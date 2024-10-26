@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:56:50 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/23 19:03:11 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/26 16:06:43 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,22 @@ void ft_push(int **stack_a, int **stack_b, int *size_a, int *size_b)
     
     i = 0;
     tmp_b = **stack_b; // int to be pushed;
-    while (i != size_b)
+    while (i != *size_b)
     {
-        (*stack_b)[i] =(*stack_b)[i+1];
+        (*stack_b)[i] = (*stack_b)[i+1];
         i++;  
     }
     i = *size_a;
     while (i  !=  0)
     {
-       (*stack_a)[i] =(*stack_a)[i - 1];
-       size_a--;
+       (*stack_a)[i] = (*stack_a)[i - 1];
+       i--;
     }
-    **stack_a = tmp_b;
-    *size_b = *size_b - 1;
     *size_a = *size_a + 1;
+    *size_b = *size_b - 1;
+    (*stack_a)[0] = tmp_b;
+    // printf("size of a = %d\n", *size_a);
+    // printf("size of b = %d\n", *size_b);
 }
 void    ft_rotate(int **stack, int size)
 {
