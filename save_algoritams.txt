@@ -1,0 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_algoritams.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/27 11:07:59 by codespace         #+#    #+#             */
+/*   Updated: 2024/10/27 11:11:14 by codespace        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+////////////////for 3 numbers////////////////////////
+   while (ft_order_check(&arra, size_of_a) || i != save_size)
+    {
+        if(!ft_order_check(&arra, size_of_a))
+            break;
+       // printf("%d\n", ft_order_check(&arra, size_of_a));
+        if (!ft_reverse_order_check(&arra, size_of_a))
+        {
+            ft_rotate(&arra, size_of_a);
+            printf("rra \n");
+            c++;
+        }
+        else if (arra[0] > arra[1])
+        {
+            ft_swap(&arra, size_of_a);
+            printf("sa \n ");
+            c++;
+        }
+        else if (arra[0] < arra[1])
+        {
+            ft_reverse(&arra, size_of_a);
+            printf("ra \n");
+            c++;
+        }
+        else
+        {
+            break ;
+        }
+        //printf("size of a = %d\n", size_of_a);
+        i = size_of_a;
+       // printf("i = %d\n", i);
+     // break;
+    }
+////////////////////////////////////////////////////////////////////////////////

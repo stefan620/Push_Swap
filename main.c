@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:52:57 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/26 17:31:32 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/27 13:51:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 int main(int argc, char **argv)
 {
-    int c = 10;
+    int c = 0;
     int size_of_a;
     int size_of_b;
     int *arra;
     int *arrb;
+    int check = 0;
     int i = 0;
     int save_size;
     size_of_b = 0;
@@ -35,41 +36,68 @@ int main(int argc, char **argv)
     //     printf("rev not sorted");
    // printf("size of a = %d\n", size_of_a);
    save_size = size_of_a;
-   //printf("save size = %d\n", save_size);
+   //printf("save size = %d\n", arra);
     while (ft_order_check(&arra, size_of_a) || i != save_size)
     {
-        
+        if(!ft_order_check(&arra, size_of_a) && size_of_a == save_size)
+            break;
        // printf("%d\n", ft_order_check(&arra, size_of_a));
-        if (!ft_reverse_order_check(&arra, size_of_a))
+        if (!ft_reverse_order_check(&arra, size_of_a) && size_of_a > 1)
         {
+            //  printf("check\n");
             ft_rotate(&arra, size_of_a);
             printf("rra \n");
+            check = 0;  
+            c++;
         }
-        else if (arra[0] > arra[1])
+        else if (arra[0] > arra[1] && size_of_a > 1)
         {
+            //  printf("check\n");
             ft_swap(&arra, size_of_a);
             printf("sa \n ");
+            check = 0;  
+            c++;
         }
-        else if (arra[0] < arra[1])
+        else if (arra[0] > arra[size_of_a - 1])
         {
+            //  printf("check\n");
             ft_reverse(&arra, size_of_a);
             printf("ra \n");
+            check = 0;  
+            c++;
         }
-        else if (size_of_b != 0 && arra[0] > arrb[0])
+        else if(arrb[0] != 0 && arrb[0] < arrb[1])
         {
+            //  printf("check\n");
+            ft_swap(&arrb, size_of_b);
+            printf("sb \n");
+            check = 0;  
+            c++;
+        }
+        else if(arrb[0] != 0 &&  arrb[0] < arra[0] && check != 1)
+        {
+            // printf("check\n");
             ft_push(&arra, &arrb, &size_of_a, &size_of_b);
-            printf("pa \n"); 
+            printf("pa \n");
+            c++;   
+            check = 0;        
         }
         else
         {
-            ft_push(&arrb, &arra, &size_of_b, &size_of_a);
+            //  printf("check\n");
+            ft_push(&arrb, &arra, &size_of_b, &size_of_a );
             printf("pb \n");
+            check = 1;
+            //break;
+            c++;
         }
         //printf("size of a = %d\n", size_of_a);
         i = size_of_a;
        // printf("i = %d\n", i);
-     // break;
+       if (c == 1150)
+        break;
     }
+    
     /////////////////////////////////////////////
     int a;
     int b;
@@ -87,6 +115,7 @@ int main(int argc, char **argv)
         b++;
     }
     printf("\n");
+    printf("number of moves =   %d\n", c);
     /////////////////////////////////////////////    
     free(arra);
     free(arrb);
