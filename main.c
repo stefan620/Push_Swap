@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:52:57 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/27 13:51:07 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/29 21:53:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ int main(int argc, char **argv)
     int save_size;
     size_of_b = 0;
     size_of_a = 0;
-    while(argv[1][size_of_a])
-        size_of_a++;
+    while(argv[1][i])
+    {
+        if(argv[1][i] == ' ')
+            size_of_a++;
+        i++;
+    }
+    size_of_a += 1;
+    i = 0;
     arrb = (int *)malloc(size_of_a * sizeof(int));
-    arra = ft_int_regulator(argv[1], size_of_a);
+    arra = ft_int_regulator(argv[1], (int )*&size_of_a);
     // if (!ft_reverse_order_check(&arra, size_of_a))
     //     printf("rev sorted");
     // else
@@ -94,7 +100,7 @@ int main(int argc, char **argv)
         //printf("size of a = %d\n", size_of_a);
         i = size_of_a;
        // printf("i = %d\n", i);
-       if (c == 1150)
+       if (c == 1000000)
         break;
     }
     

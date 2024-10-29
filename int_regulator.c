@@ -6,24 +6,41 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:55:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/26 17:21:24 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/29 21:41:52 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int     *ft_int_regulator(char *str, int size)
 {
     int i;
+    int j;
     int *arr;
 
     i = 0;
+    j = 0;
     arr = (int *)malloc(size  * sizeof(int));
     while (str[i])
     {
-        arr[i] = str[i] - '0';
-        i++;   
-    }    
+        while (str[i] && str[i] == ' ')
+            i++;
+        //printf("i = %d\n", i);
+        arr[j] = atoi(str + i);
+        j++;
+        // arr[i] = str[i] - '0';
+        // i++;  
+        while (str[i] && str[i] != ' ')
+            i++;
+        //i++; 
+    } 
+    // i = 0;
+    // while(i != j)
+    // {
+    //     printf("%d\n", arr[i]);
+    //     i++;
+    // }
     return(arr);
 }
 int ft_order_check(int **stack, int size)
