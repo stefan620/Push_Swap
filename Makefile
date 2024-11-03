@@ -1,6 +1,5 @@
 # Variables
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c commands.c driver.c int_regulator.c 
 OBJS = $(SRCS:.c=.o)
 NAME = push_swap

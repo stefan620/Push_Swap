@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   int_regulator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:55:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/10/29 21:41:52 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/03 14:32:51 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int     *ft_int_regulator(char *str, int size)
+int     *ft_int_regulator(char **argv, int size)
 {
     int i;
     int j;
     int *arr;
 
-    i = 0;
-    j = 0;
+    i = 1;
+    // j = 0;
     arr = (int *)malloc(size  * sizeof(int));
-    while (str[i])
+    while (argv[i])
     {
-        while (str[i] && str[i] == ' ')
-            i++;
+        // while (str[i] && str[i] == ' ')
+        //     i++;
         //printf("i = %d\n", i);
-        arr[j] = atoi(str + i);
-        j++;
+        arr[i - 1] = atoi(argv[i]);
+        // j++;
         // arr[i] = str[i] - '0';
-        // i++;  
-        while (str[i] && str[i] != ' ')
-            i++;
+        i++;  
+        // while (str[i] && str[i] != ' ')
+            // i++;
         //i++; 
     } 
     // i = 0;
@@ -68,6 +68,34 @@ int ft_reverse_order_check(int **stack, int size)
         i++;
     }
     return(0);
+}
+void ft_buble(int **arra, int **arr_base, int size_of_a)
+{
+    int i;
+    i = 0;
+    int swapped;
+    int k;
+    swapped = 1;
+    while(i != size_of_a)
+    {
+        (*arr_base)[i] = (*arra)[i];
+        i++;
+    } 
+    while (swapped) {
+        swapped = 0;
+        k = 0;
+        while (k < size_of_a - 1)
+        {
+            if ((*arr_base)[k] > (*arr_base)[k + 1]) 
+            {
+                int temp = (*arr_base)[k];
+                (*arr_base)[k] = (*arr_base)[k + 1];
+                (*arr_base)[k + 1] = temp;
+                swapped = 1;
+            }
+            k++;
+        }
+    }
 }
 // #include <stdio.h>
 
