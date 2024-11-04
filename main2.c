@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 15:45:51 by silic             #+#    #+#             */
-/*   Updated: 2024/11/03 16:31:39 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/04 21:01:05 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,81 @@ int main(int argc, char **argv)
     arrb = (int *)malloc(size_of_a * sizeof(int));
     arra = ft_int_regulator(argv, (int )*&size_of_a);
     arr_base = (int *)malloc(size_of_a * sizeof(int));
+      save_size = size_of_a;
     ft_buble(&arra, &arr_base, size_of_a);
     ft_split(&arra, &arrb, &arr_base, &size_of_a, &size_of_b);
-    while(1)
-    {
-        if(!ft_order_check(&arra, size_of_a))
-            break;
-        ft_buble(&arra, &arr_base, size_of_a);
-        ft_sort_a(&arra, &arrb, &arr_base, &size_of_a, &size_of_b);
-        c++;
-    }
     ////////////////////////////////////////////////////
+       int check = 0;
+    while (ft_order_check(&arra, size_of_a) || i != save_size)
+    {
+        if(!ft_order_check(&arra, size_of_a) && size_of_a == save_size)
+            break;
+       // printf("%d\n", ft_order_check(&arra, size_of_a));
+        if (!ft_reverse_order_check(&arra, size_of_a) && size_of_a > 1)
+        {
+            //  printf("check\n");
+            ft_rotate(&arra, size_of_a);
+            printf("ra\n");
+            check = 0;  
+            c++;
+        }
+        else if (arra[0] > arra[1] && size_of_a > 1)
+        {
+            //  printf("check\n");
+            ft_swap(&arra, size_of_a);
+            printf("sa\n");
+            check = 0;  
+            c++;
+        }
+        else if (arra[0] > arra[size_of_a - 1])
+        {
+            //  printf("check\n");
+            ft_reverse(&arra, size_of_a);
+            printf("rra\n");
+            check = 0;  
+            c++;
+        }
+        else if(arrb[0] != 0 && arrb[0] < arrb[1])
+        {
+            //  printf("check\n");
+            ft_swap(&arrb, size_of_b);
+            printf("sb\n");
+            check = 0;  
+            c++;
+        }
+        else if(arrb[0] != 0 &&  arrb[0] < arra[0] && check != 1)
+        {
+            // printf("check\n");
+            ft_push(&arra, &arrb, &size_of_a, &size_of_b);
+            printf("pa\n");
+            c++;   
+            check = 0;        
+        }
+        else
+        {
+            //  printf("check\n");
+            ft_push(&arrb, &arra, &size_of_b, &size_of_a );
+            printf("pb\n");
+            check = 1;
+            //break;
+            c++;
+        }
+        //printf("size of a = %d\n", size_of_a);
+        i = size_of_a;
+       // printf("i = %d\n", i);
+    }
    
     int a;
     int b;
     a = 0;
     b = 0;
-    //printf("number of operations = %d\n", c);
+    printf("number of operations = %d\n", c);
     while(a != size_of_a)
     {
         printf("%d ", arra[a]);
         a++;
     }
-    printf("\n");
+    printf("\n\n");
     while(b != size_of_b)
     {
         printf("%d ", arrb[b]);
