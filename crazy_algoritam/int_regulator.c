@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:55:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/03 14:32:51 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/12 17:17:49 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,6 @@ int     *ft_int_regulator(char **argv, int size)
     // }
     return(arr);
 }
-int ft_order_check(int **stack, int size)
-{
-    int i;
-
-    i = 0;
-    while(i != size - 1)
-    {
-        if ((*stack)[i] > (*stack)[i + 1])
-            return (1);
-        i++;
-    }
-    return(0);
-}
-int ft_reverse_order_check(int **stack, int size)
-{
-    int i;
-
-    i = 0;
-    while(i != size)
-    {
-        if ((*stack)[i] < (*stack)[i + 1])
-            return (1);
-        i++;
-    }
-    return(0);
-}
 void ft_buble(int **arra, int **arr_base, int size_of_a)
 {
     int i;
@@ -97,26 +71,53 @@ void ft_buble(int **arra, int **arr_base, int size_of_a)
         }
     }
 }
-// #include <stdio.h>
-
-// int main(void)
-// {
-//     int *arr;
-//     arr = (int *)malloc(5 * sizeof(int));
-//     int i = 0;
-//     int size = 5;
-//     while(i != size)
-//     {
-//         arr[i] = i;
-//         i++;
-//         //size--;
-        
-//     }
-//     i = 0;
-//     while(i != 5)
-//     {
-//         printf("%d\n", arr[i]);
-//         i++;
-//     }
-//     printf("---%d\n", ft_reverse_order_check(&arr, size));
-// }
+int ft_the_decider(int **arra, int **arrb, int in_b, int size_of_b)
+{
+    int i = 0;
+    while (i != in_b)
+    {
+        if ((*arra)[0] == (*arrb)[i] - 1)
+            return (1);
+        i++;    
+    }
+    return (0);
+}
+int ft_the_decider_v2(int **arra, int **arrb, int size_of_a, int **buble)
+{
+    int i = 0;
+    while(i != size_of_a) 
+    {
+        if ((*arra)[i] == (*buble)[0])
+            break;
+        i++;   
+    }
+    if (i > size_of_a/2)
+        return (1);
+    return (0);
+}
+int ft_the_decider_v3(int **arra, int **arrb, int size_of_a, int **buble)
+{
+    int i = 0;
+    while(i != size_of_a) 
+    {
+        if ((*arra)[i] == (*buble)[size_of_a - 1])
+            break;
+        i++;   
+    }
+    if (i < size_of_a/2)
+        return (1);
+    return (0);
+}
+int ft_split_check(int **arra, int **buble, int size_of_a)
+{
+    int i = 0;
+    while (i != size_of_a)
+    {
+        if ((*arra)[i] == (*buble)[0])
+            break;
+        i++;
+    }
+    if (i < size_of_a/2)
+        return (1);
+    return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/11 20:11:40 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/12 17:22:28 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int argc, char **argv)
     arra = ft_int_regulator(argv, (int )*&size_of_a);
     arr_base = (int *)malloc(size_of_a * sizeof(int));
     arr_chunks_b = (int *)malloc(size_of_a * sizeof(int));
-    i = 8;
+    i = 13;
     int delimiter = size_of_a/i;
     if (size_of_a % i != 0)
         delimiter++;
@@ -43,9 +43,8 @@ int main(int argc, char **argv)
         ft_split_a(&arra, &arrb, &arr_base, &size_of_a, &size_of_b, &arr_chunks_b, delimiter);
         c++;
     }
-
+    // return (0);
     i--;
-    ft_buble(&arra, &arr_base, size_of_a);
     ft_finish_a(&arra, &arrb, &arr_base, &size_of_a, &size_of_b);
     while (i != 0)
     {
@@ -55,6 +54,7 @@ int main(int argc, char **argv)
         }
         i--;
     }
+    // return(0);
    ft_finish_b(&arra, &arrb, &arr_base, &size_of_a, &size_of_b);
     
 
