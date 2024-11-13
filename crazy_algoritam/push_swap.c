@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/13 17:25:49 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/13 18:45:40 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	ft_push_swap1(t_sort_params *params, int i);
+static void	ft_push_swap(t_sort_params *params, int i);
 static int	ft_delimitor(int size_of_a, int i);
 
 int	main(int argc, char **argv)
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 
 	size_of_b = 0;
 	size_of_a = argc - 1;
-	i = 6;
+	i = size_of_a / 25;
 	delimiter = ft_delimitor(size_of_a, i);
 	params = (t_sort_params *)malloc(sizeof(t_sort_params));
 	params->arra = ft_int_regulator(argv, (int)*&size_of_a);
@@ -52,7 +52,9 @@ static int	ft_delimitor(int size_of_a, int i)
 static void	ft_push_swap(t_sort_params *params, int i)
 {
 	int	c;
+	int d;
 
+	d = 0;
 	c = 0;
 	while (c != i)
 	{

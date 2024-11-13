@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/13 16:46:46 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/13 18:39:46 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	ft_finish_b(t_sort_params *params);
 int		ft_the_decider(int **arra, int **arrb, int in_b, int size_of_b);
 int		ft_the_decider_v2(int **arra, int **arrb, int size_of_a, int **buble);
 int		ft_the_decider_v3(int **arra, int **arrb, int size_of_a, int **buble);
-int		ft_split_check(int **arra, int **buble, int size_of_a);
+
 
 #endif

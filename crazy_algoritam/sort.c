@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:25:04 by silic             #+#    #+#             */
-/*   Updated: 2024/11/13 17:09:44 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/13 18:39:42 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ft_final_sort(t_sort_params *params)
 				c++;
 				break ;
 			}
-			else
+			else if (!ft_the_decider(&params->arra, &params->arrb, i, 10))
 			{
 				ft_rotate(&params->arrb, *params->size_of_b);
 				printf("rb\n");
@@ -104,12 +104,8 @@ void	ft_final_sort(t_sort_params *params)
 		}
 		while (i != 0)
 		{
-			if (params->arrb[0] == (params->arra)[0] - 1
-				|| ft_the_decider(&params->arra, &params->arrb, params->delimiter
-					- c - i, *params->size_of_b))
-			{
+			if (params->arrb[0] == (params->arra)[0] - 1)
 				break ;
-			}
 			ft_reverse(&params->arrb, *params->size_of_b);
 			printf("rrb\n");
 			i--;
@@ -131,7 +127,7 @@ void	ft_finish_b(t_sort_params *params)
 		}
 		else if (params->arrb[0] != params->arr_base[*params->size_of_b - 1]
 			&& !ft_the_decider_v3(&params->arrb, &params->arra,
-				*params->size_of_b, &params->arr_base))
+				*params->size_of_b, &params->arr_base ))
 		{
 			ft_reverse(&params->arrb, *params->size_of_b);
 			printf("rrb\n");
