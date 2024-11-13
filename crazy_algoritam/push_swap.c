@@ -6,96 +6,69 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/12 17:22:28 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/13 17:25:49 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "push_swap.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-int main(int argc, char **argv)
+static void	ft_push_swap1(t_sort_params *params, int i);
+static int	ft_delimitor(int size_of_a, int i);
+
+int	main(int argc, char **argv)
 {
-    int size_of_a;
-    int size_of_b;
-    int *arra;
-    int *arrb;
-    int *arr_base;
-    int *arr_chunks_b;
-    int i;
-    i = 0;
-    int c = 0;
-    size_of_b = 0;
-    size_of_a = argc - 1;
-    int save_size = size_of_a;
-    arrb = (int *)malloc(size_of_a * sizeof(int));
-    arra = ft_int_regulator(argv, (int )*&size_of_a);
-    arr_base = (int *)malloc(size_of_a * sizeof(int));
-    arr_chunks_b = (int *)malloc(size_of_a * sizeof(int));
-    i = 13;
-    int delimiter = size_of_a/i;
-    if (size_of_a % i != 0)
-        delimiter++;
-    i--;
-    while(c != i)
-    {
-        ft_buble(&arra, &arr_base, size_of_a);
-        ft_split_a(&arra, &arrb, &arr_base, &size_of_a, &size_of_b, &arr_chunks_b, delimiter);
-        c++;
-    }
-    // return (0);
-    i--;
-    ft_finish_a(&arra, &arrb, &arr_base, &size_of_a, &size_of_b);
-    while (i != 0)
-    {
-        while (size_of_b != delimiter* i)
-        {
-             ft_final_sort(&arra, &arrb, &arr_base, &size_of_a, &size_of_b, delimiter);
-        }
-        i--;
-    }
-    // return(0);
-   ft_finish_b(&arra, &arrb, &arr_base, &size_of_a, &size_of_b);
-    
+	t_sort_params	*params;
+	int				size_of_b;
+	int				size_of_a;
+	int				i;
+	int				delimiter;
 
+	size_of_b = 0;
+	size_of_a = argc - 1;
+	i = 6;
+	delimiter = ft_delimitor(size_of_a, i);
+	params = (t_sort_params *)malloc(sizeof(t_sort_params));
+	params->arra = ft_int_regulator(argv, (int)*&size_of_a);
+	params->arrb = (int *)malloc(size_of_a * sizeof(int));
+	params->arr_base = (int *)malloc(size_of_a * sizeof(int));
+	params->size_of_a = &size_of_a;
+	params->size_of_b = &size_of_b;
+	params->delimiter = delimiter;
+	ft_push_swap(params, i - 1);
+}
 
-    ///////////////////////////////////////////////
- 
-    
-    
+static int	ft_delimitor(int size_of_a, int i)
+{
+	int	delimiter;
 
+	delimiter = size_of_a / i;
+	if (size_of_a % i != 0)
+		delimiter++;
+	return (delimiter);
+}
 
-    ///////////////////////////////////////////////
-    int a;
-    int b;
-    int d;
-    d = 0;
-    a = 0;
-    b = 0;
-    printf("number of operations = %d\n", c);
-    while(a != size_of_a)
-    {
-        printf("%d ", arra[a]);
-        a++;
-    }
-    printf("\n\n");
-    while(b != size_of_b)
-    {
-        printf("%d ", arrb[b]);
-        b++;
-    }
-      printf("\n\n");
-    while(d != 7)
-    {
-        printf("%d ", arr_chunks_b[d]);
-        d++ ;
-    }
-    /////////////////////////////////////////////    
-    free(arra);
-    free(arrb);
-    free(arr_base);
-    free(arr_chunks_b);
-    return(0);
+static void	ft_push_swap(t_sort_params *params, int i)
+{
+	int	c;
 
-    
+	c = 0;
+	while (c != i)
+	{
+		ft_buble(&params->arra, &params->arr_base, *params->size_of_a);
+		ft_split_a(params);
+		c++;
+	}
+	i--;
+	ft_finish_a(params);
+	while (i != 0)
+	{
+		while (*params->size_of_b != params->delimiter * i)
+		{
+			ft_final_sort(params);
+		}
+		i--;
+	}
+	ft_finish_b(params);
 }
