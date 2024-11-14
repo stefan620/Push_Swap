@@ -6,13 +6,13 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/13 18:45:40 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/14 19:08:36 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 static void	ft_push_swap(t_sort_params *params, int i);
 static int	ft_delimitor(int size_of_a, int i);
@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 	size_of_b = 0;
 	size_of_a = argc - 1;
 	i = size_of_a / 25;
+	if (ft_check_for_num(argv, argc) || ft_over_check(argv, argc))
+		return (write(1, "Errora\n", 7), 0);
 	delimiter = ft_delimitor(size_of_a, i);
 	params = (t_sort_params *)malloc(sizeof(t_sort_params));
 	params->arra = ft_int_regulator(argv, (int)*&size_of_a);
@@ -36,6 +38,9 @@ int	main(int argc, char **argv)
 	params->size_of_a = &size_of_a;
 	params->size_of_b = &size_of_b;
 	params->delimiter = delimiter;
+	if (ft_check_repeat(&params->arra, size_of_a) == 1)
+		return (write(1, "Errorb\n", 7), 0);
+	ft_set_indexes(params);
 	ft_push_swap(params, i - 1);
 }
 
@@ -52,7 +57,7 @@ static int	ft_delimitor(int size_of_a, int i)
 static void	ft_push_swap(t_sort_params *params, int i)
 {
 	int	c;
-	int d;
+	int	d;
 
 	d = 0;
 	c = 0;

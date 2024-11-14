@@ -6,13 +6,12 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:25:04 by silic             #+#    #+#             */
-/*   Updated: 2024/11/13 18:39:42 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/14 15:49:17 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
 
 void	ft_split_a(t_sort_params *params)
 {
@@ -24,13 +23,13 @@ void	ft_split_a(t_sort_params *params)
 		if (params->arra[0] >= params->arr_base[params->delimiter])
 		{
 			ft_rotate(&params->arra, *params->size_of_a);
-			printf("ra\n");
+			write(1,"ra\n",3);
 		}
 		else if (&params->arra[0] <= &params->arr_base[params->delimiter])
 		{
 			ft_push(&params->arrb, &params->arra, params->size_of_b,
 				params->size_of_a);
-			printf("pb\n");
+			write(1,"pb\n", 3);
 			c++;
 		}
 	}
@@ -49,20 +48,20 @@ void	ft_finish_a(t_sort_params *params)
 				*params->size_of_a, &params->arr_base))
 		{
 			ft_rotate(&params->arra, *params->size_of_a);
-			printf("ra\n");
+			write(1, "ra\n" ,3);
 		}
 		else if (params->arra[0] != params->arr_base[0]
 			&& ft_the_decider_v2(&params->arra, &params->arrb,
 				*params->size_of_a, &params->arr_base))
 		{
 			ft_reverse(&params->arra, *params->size_of_a);
-			printf("rra\n");
+			write(1, "rra\n", 4);
 		}
 		else
 		{
 			ft_push(&params->arrb, &params->arra, params->size_of_b,
 				params->size_of_a);
-			printf("pb\n");
+			write(1,"pb\n"  ,3);
 			i++;
 		}
 	}
@@ -70,7 +69,7 @@ void	ft_finish_a(t_sort_params *params)
 	{
 		ft_push(&params->arra, &params->arrb, params->size_of_a,
 			params->size_of_b);
-		printf("pa\n");
+		write(1,"pa\n", 3);
 		i--;
 	}
 }
@@ -91,14 +90,14 @@ void	ft_final_sort(t_sort_params *params)
 			{
 				ft_push(&params->arra, &params->arrb, params->size_of_a,
 					params->size_of_b);
-				printf("pa\n");
+				write(1,"pa\n" ,3);
 				c++;
 				break ;
 			}
 			else if (!ft_the_decider(&params->arra, &params->arrb, i, 10))
 			{
 				ft_rotate(&params->arrb, *params->size_of_b);
-				printf("rb\n");
+				write(1, "rb\n", 3);
 				i++;
 			}
 		}
@@ -107,7 +106,7 @@ void	ft_final_sort(t_sort_params *params)
 			if (params->arrb[0] == (params->arra)[0] - 1)
 				break ;
 			ft_reverse(&params->arrb, *params->size_of_b);
-			printf("rrb\n");
+			write(1, "rrb\n", 4);
 			i--;
 		}
 	}
@@ -123,20 +122,20 @@ void	ft_finish_b(t_sort_params *params)
 				*params->size_of_b, &params->arr_base))
 		{
 			ft_rotate(&params->arrb, *params->size_of_b);
-			printf("rb\n");
+			write(1, "rb\n", 3);
 		}
 		else if (params->arrb[0] != params->arr_base[*params->size_of_b - 1]
 			&& !ft_the_decider_v3(&params->arrb, &params->arra,
 				*params->size_of_b, &params->arr_base ))
 		{
 			ft_reverse(&params->arrb, *params->size_of_b);
-			printf("rrb\n");
+			write(1, "rrb\n", 4);
 		}
 		else
 		{
 			ft_push(&params->arra, &params->arrb, params->size_of_a,
 				params->size_of_b);
-			printf("pa\n");
+			write(1, "pa\n", 3);
 		}
 	}
 }

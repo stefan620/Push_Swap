@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/13 18:39:46 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/14 18:53:32 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ void	ft_finish_b(t_sort_params *params);
 int		ft_the_decider(int **arra, int **arrb, int in_b, int size_of_b);
 int		ft_the_decider_v2(int **arra, int **arrb, int size_of_a, int **buble);
 int		ft_the_decider_v3(int **arra, int **arrb, int size_of_a, int **buble);
-
+int		ft_atoi(const char *str);
+int		ft_check_for_num(char **argv, int argc);
+int		ft_check_repeat(int **arr, int size);
+int		ft_over_check(char **argv, int argc);
+long	ft_atoi_long(const char *str);
+void ft_set_indexes(t_sort_params *params);
 
 #endif
