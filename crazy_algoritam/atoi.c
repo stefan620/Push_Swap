@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:31:16 by silic             #+#    #+#             */
-/*   Updated: 2024/11/14 18:04:46 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/15 13:14:00 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_atoi(const char *str)
 		a = a * -1;
 	return (a);
 }
-#include <stdio.h>
 
 long	ft_atoi_long(const char *str)
 {

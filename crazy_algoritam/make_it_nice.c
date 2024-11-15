@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:43:42 by silic             #+#    #+#             */
-/*   Updated: 2024/11/14 18:54:22 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/15 13:15:30 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	*ft_int_regulator(char **argv, int size)
 	}
 	return ((int *)arr);
 }
+
 int	ft_check_repeat(int **arr, int size)
 {
 	int	i;
@@ -67,6 +68,7 @@ int	ft_check_repeat(int **arr, int size)
 	}
 	return (0);
 }
+
 int	ft_over_check(char **argv, int argc)
 {
 	int	i;
@@ -74,22 +76,23 @@ int	ft_over_check(char **argv, int argc)
 	i = 1;
 	while (i != argc)
 	{
-		if (ft_atoi_long(argv[i]) > 2147483647 || ft_atoi(argv[i]) <
-			-2147483648)
+		if (ft_atoi_long(argv[i]) > 2147483647 || ft_atoi(argv[i])
+			< -2147483648)
 			return (1);
 		i++;
 	}
 	return (0);
 }
-void ft_set_indexes(t_sort_params *params)
+
+void	ft_set_indexes(t_sort_params *params)
 {
 	int	i;
-	int j;
-	int k;
-	int *arr;
-	
+	int	j;
+	int	k;
+	int	*arr;
+
 	i = -1;
-	arr = (int*)malloc(*params->size_of_a * sizeof(int));
+	arr = (int *)malloc(*params->size_of_a * sizeof(int));
 	while (++i < *params->size_of_a)
 	{
 		k = 0;
@@ -102,7 +105,7 @@ void ft_set_indexes(t_sort_params *params)
 		arr[i] = k;
 	}
 	i = *params->size_of_a;
-	while(i--)
+	while (i--)
 		params->arra[i] = arr[i];
-	free(arr);	
+	free(arr);
 }

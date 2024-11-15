@@ -1,6 +1,7 @@
 # Variables
 CC = cc
-SRCS = main.c commands.c driver.c int_regulator.c 
+CFLAGS = -Wall -Wextra -Werror
+SRCS = push_swap.c commands.c int_regulator.c atoi.c make_it_nice.c sort.c 
 OBJS = $(SRCS:.c=.o)
 NAME = push_swap
 

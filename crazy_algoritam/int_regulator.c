@@ -6,12 +6,9 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:55:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/13 18:30:27 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/15 13:14:32 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
-#include <stdlib.h>
 
 void	ft_buble(int **arra, int **arr_base, int size_of_a)
 {
@@ -41,7 +38,8 @@ void	ft_buble(int **arra, int **arr_base, int size_of_a)
 		}
 	}
 }
-int	ft_the_decider(int **arra, int **arrb, int in_b, int size_of_b)
+
+int	ft_the_decider(int **arra, int **arrb, int in_b)
 {
 	int	i;
 
@@ -54,7 +52,8 @@ int	ft_the_decider(int **arra, int **arrb, int in_b, int size_of_b)
 	}
 	return (0);
 }
-int	ft_the_decider_v2(int **arra, int **arrb, int size_of_a, int **buble)
+
+int	ft_the_decider_v2(int **arra, int size_of_a, int **buble)
 {
 	int	i;
 
@@ -69,7 +68,8 @@ int	ft_the_decider_v2(int **arra, int **arrb, int size_of_a, int **buble)
 		return (1);
 	return (0);
 }
-int	ft_the_decider_v3(int **arra, int **arrb, int size_of_a, int **buble)
+
+int	ft_the_decider_v3(int **arra, int size_of_a, int **buble)
 {
 	int	i;
 
