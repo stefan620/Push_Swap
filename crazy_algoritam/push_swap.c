@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/14 19:08:36 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/15 13:58:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int argc, char **argv)
 
 	size_of_b = 0;
 	size_of_a = argc - 1;
-	i = size_of_a / 25;
 	if (ft_check_for_num(argv, argc) || ft_over_check(argv, argc))
 		return (write(1, "Errora\n", 7), 0);
 	delimiter = ft_delimitor(size_of_a, i);
@@ -41,6 +40,9 @@ int	main(int argc, char **argv)
 	if (ft_check_repeat(&params->arra, size_of_a) == 1)
 		return (write(1, "Errorb\n", 7), 0);
 	ft_set_indexes(params);
+	if (size_of_a <= 3)
+		return(ft_sort_3(params), 0);
+	i = size_of_a / 25;
 	ft_push_swap(params, i - 1);
 }
 

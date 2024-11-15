@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 13:10:13 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/15 13:53:59 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ int		ft_check_repeat(int **arr, int size);
 int		ft_over_check(char **argv, int argc);
 long	ft_atoi_long(const char *str);
 void ft_set_indexes(t_sort_params *params);
+void ft_sort_3(t_sort_params *params);
 
 #endif
