@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 13:53:59 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/17 19:36:48 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int		ft_over_check(char **argv, int argc);
 long	ft_atoi_long(const char *str);
 void ft_set_indexes(t_sort_params *params);
 void ft_sort_3(t_sort_params *params);
+void ft_sort_five_four_help(t_sort_params *params);
+void ft_sort_five_four(t_sort_params *params);
 
 #endif

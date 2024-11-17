@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_it_nice.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:43:42 by silic             #+#    #+#             */
-/*   Updated: 2024/11/15 13:15:30 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/17 19:38:41 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_over_check(char **argv, int argc)
 	while (i != argc)
 	{
 		if (ft_atoi_long(argv[i]) > 2147483647 || ft_atoi(argv[i])
-			< -2147483648)
+			< -2147483647)
 			return (1);
 		i++;
 	}
