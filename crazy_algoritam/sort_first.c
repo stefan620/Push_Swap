@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_first.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:16:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/17 21:19:25 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/18 15:03:53 by stefan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void ft_sort_3(t_sort_params *params)
     {
         if (params->arra[0] == 2)
         {
-               ft_reverse(&params->arra, *params->size_of_a);
-               write (1, "rra\n", 4);
+               ft_rotate(&params->arra, *params->size_of_a);
+               write (1, "ra\n", 3);
         }
         else
         {
-            ft_rotate(&params->arra, *params->size_of_a);
-            write (1, "ra\n", 3);
+            ft_reverse(&params->arra, *params->size_of_a);
+            write (1, "rra\n", 4);
         }
     }
     if (params->arra[0] > params->arra[1])
@@ -36,6 +36,7 @@ void ft_sort_3(t_sort_params *params)
 }
 void ft_sort_five_four(t_sort_params *params)
 {
+    
     while (*params->size_of_b <= 1)
     {
         if (params->arra[0] == 0 || params->arra[0] == 1)
@@ -45,8 +46,8 @@ void ft_sort_five_four(t_sort_params *params)
         }
         else
         {
-            ft_reverse(&params->arra, *params->size_of_a);
-            write (1, "rra\n", 4);
+            ft_rotate(&params->arra, *params->size_of_a);
+            write (1, "ra\n", 3);
         }
     }
    
@@ -67,13 +68,13 @@ void ft_sort_five_four_help(t_sort_params *params)
     {
         if(params->arra[0] == 4)
         {
-            ft_reverse(&params->arra, *params->size_of_a);
-            write (1, "rra\n", 4);
+            ft_rotate(&params->arra, *params->size_of_a);
+            write (1, "ra\n", 3);
         }
         else
         {
-            ft_rotate(&params->arra, *params->size_of_a);
-            write (1, "ra\n", 3);
+            ft_reverse(&params->arra, *params->size_of_a);
+            write (1, "rra\n", 4);
         }
     }
     if (params->arra[0] > params->arra[1])

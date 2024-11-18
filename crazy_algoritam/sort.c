@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:25:04 by silic             #+#    #+#             */
-/*   Updated: 2024/11/15 13:15:42 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/18 15:57:50 by stefan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,10 @@ void	ft_final_sort(t_sort_params *params)
 					params->size_of_b);
 				write(1, "pa\n", 3);
 				c++;
-				break ;
+				if (!ft_the_decider(&params->arra, &params->arrb, i))
+					break ;
 			}
-			else if (!ft_the_decider(&params->arra, &params->arrb, i))
+			else 
 			{
 				ft_rotate(&params->arrb, *params->size_of_b);
 				write(1, "rb\n", 3);

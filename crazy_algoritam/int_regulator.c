@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   int_regulator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:55:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/15 13:14:32 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/18 15:21:00 by stefan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,17 @@ int	ft_the_decider_v3(int **arra, int size_of_a, int **buble)
 	if (i < size_of_a / 2)
 		return (1);
 	return (0);
+}
+int ft_order_check(int **stack, int size)
+{
+    int i;
+
+    i = 0;
+    while(i != size - 1)
+    {
+        if ((*stack)[i] > (*stack)[i + 1])
+            return (1);
+        i++;
+    }
+    return(0);
 }

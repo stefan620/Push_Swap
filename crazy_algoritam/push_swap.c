@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/17 20:40:18 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/18 15:43:20 by stefan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static void	ft_push_swap(t_sort_params *params, int i);
 static int helper(t_sort_params *params);
+static int helper_1(t_sort_params *params, int *i);
 static int	ft_delimitor(int size_of_a, int i);
 
 int	main(int argc, char **argv)
@@ -31,21 +32,32 @@ int	main(int argc, char **argv)
 	i = 2;
 	if (ft_check_for_num(argv, argc) || ft_over_check(argv, argc))
 		return (write(1, "Error\n", 7), 0);
+	if (size_of_a <= 1)
+		return (write(1, "Error\n", 7), 0);
 	params = (t_sort_params *)malloc(sizeof(t_sort_params));
 	params->arra = ft_int_regulator(argv, (int)*&size_of_a);
 	params->arrb = (int *)malloc(size_of_a * sizeof(int));
 	params->arr_base = (int *)malloc(size_of_a * sizeof(int));
 	params->size_of_a = &size_of_a;
 	params->size_of_b = &size_of_b;
-	if (ft_check_repeat(&params->arra, size_of_a) == 1)
-		return (write(1, "Error\n", 7), 0);
-	if (helper(params))
-		return (0);
-	if (*params->size_of_a >= 100)
-		i = size_of_a / 25;
+	if(!helper_1(params, &i))
+		return(ft_clean(params), 0);
 	delimiter = ft_delimitor(size_of_a, i);
 	params->delimiter = delimiter;
 	ft_push_swap(params, i - 1);
+	ft_clean(params);
+}
+static int helper_1(t_sort_params *params, int *i)
+{
+	if (ft_check_repeat(&params->arra, *params->size_of_a) == 1)
+		return (write(1, "Error\n", 7), 0);
+	if (!ft_order_check(&params->arra, *params->size_of_a))
+		return(0);
+	if (helper(params))
+		return (0);
+	if (*params->size_of_a >= 100)
+		*i = *params->size_of_a / 25;
+	return(1);
 }
 static int helper(t_sort_params *params)
 {

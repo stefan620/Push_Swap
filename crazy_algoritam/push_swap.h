@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/17 19:36:48 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/18 15:39:23 by stefan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_sort_params
 	int	delimiter;
 }		t_sort_params;
 
+void ft_clean(t_sort_params *params);
+int ft_order_check(int **stack, int size);
 void	ft_split_a(t_sort_params *params);
 void	ft_sort_a(t_sort_params *params);
 void	ft_swap(int **stack, int size);
