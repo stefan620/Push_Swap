@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_it_nice.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:43:42 by silic             #+#    #+#             */
-/*   Updated: 2024/11/18 16:08:48 by stefan           ###   ########.fr       */
+/*   Updated: 2024/11/22 13:55:11 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ int	ft_check_for_num(char **argv, int argc)
 		j = 0;
 		while (argv[i][j])
 		{
-			if ((argv[i][j] == '+' || argv[i][j] == '-') && argv[i][j + 1] == '\0')
-				return(1);
-			if ((argv[i][j] < '0' || argv[i][j] > '9') && (argv[i][j] != '+' && argv[i][j] != '-'))
+			if ((argv[i][j] == '+' || argv[i][j] == '-') && argv[i][j
+				+ 1] == '\0')
+				return (1);
+			if ((argv[i][j] < '0' || argv[i][j] > '9') && (argv[i][j] != '+'
+					&& argv[i][j] != '-'))
 				return (1);
 			j++;
 		}
