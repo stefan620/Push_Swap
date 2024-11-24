@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:43:42 by silic             #+#    #+#             */
-/*   Updated: 2024/11/22 13:55:11 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/23 14:47:11 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	*ft_int_regulator(char **argv, int size)
 
 	i = 1;
 	arr = (int *)malloc(size * sizeof(int));
+	if (!arr)
+		return (NULL);
 	while (argv[i])
 	{
 		arr[i - 1] = ft_atoi(argv[i]);
@@ -62,6 +64,7 @@ int	ft_check_repeat(int **arr, int size)
 	while (i != size)
 	{
 		j = i + 1;
+		printf("arr[i] = %lu\n", sizeof(arr[i]));
 		while (j != size)
 		{
 			if ((*arr)[i] == (*arr)[j])
@@ -88,7 +91,7 @@ int	ft_over_check(char **argv, int argc)
 	return (0);
 }
 
-void	ft_set_indexes(t_sort_params *params)
+int	ft_set_indexes(t_sort_params *params)
 {
 	int	i;
 	int	j;
@@ -97,6 +100,8 @@ void	ft_set_indexes(t_sort_params *params)
 
 	i = -1;
 	arr = (int *)malloc(*params->size_of_a * sizeof(int));
+	if (!arr)
+		return (0);
 	while (++i < *params->size_of_a)
 	{
 		k = 0;
@@ -112,4 +117,5 @@ void	ft_set_indexes(t_sort_params *params)
 	while (i--)
 		params->arra[i] = arr[i];
 	free(arr);
+	return (1);
 }

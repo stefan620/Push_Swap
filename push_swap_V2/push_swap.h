@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/05 19:51:35 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/10 15:29:52 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void ft_buble(int **stack, int **base, int size);
 void ft_check_a(int **arra);
 void ft_split_b(int **arra, int **arrb,int **arr_base,int *size_of_a, int *size_of_b, int pivot);
 void ft_check_b(int **arrb);
+void ft_sort_three(int **arr, int size);
 
 #endif

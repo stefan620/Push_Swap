@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/22 13:55:53 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/23 14:56:03 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ int	main(int argc, char **argv)
 	if (size_of_a <= 1)
 		return (write(1, "Error\n", 7), 0);
 	params = (t_sort_params *)malloc(sizeof(t_sort_params));
-	params->arra = ft_int_regulator(argv, (int)*&size_of_a);
-	params->arrb = (int *)malloc(size_of_a * sizeof(int));
-	params->arr_base = (int *)malloc(size_of_a * sizeof(int));
+	if (!params || !ft_allocator(&params, argv ,size_of_a ))
+		return (0);
 	params->size_of_a = &size_of_a;
 	params->size_of_b = &size_of_b;
 	if (!helper_1(params, &i))
@@ -50,7 +49,7 @@ int	main(int argc, char **argv)
 
 static int	helper_1(t_sort_params *params, int *i)
 {
-	if (ft_check_repeat(&params->arra, *params->size_of_a) == 1)
+	if (ft_check_repeat(&params->arra, *params->size_of_a))
 		return (write(1, "Error\n", 7), 0);
 	if (!ft_order_check(&params->arra, *params->size_of_a))
 		return (0);
@@ -63,7 +62,8 @@ static int	helper_1(t_sort_params *params, int *i)
 
 static int	helper(t_sort_params *params)
 {
-	ft_set_indexes(params);
+	if (!ft_set_indexes(params))
+		return (0);
 	if (*params->size_of_a <= 3)
 		return (ft_sort_3(params), 1);
 	else if (*params->size_of_a <= 5)

@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/22 14:41:08 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/23 14:55:35 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ int		ft_check_for_num(char **argv, int argc);
 int		ft_check_repeat(int **arr, int size);
 int		ft_over_check(char **argv, int argc);
 long	ft_atoi_long(const char *str);
-void	ft_set_indexes(t_sort_params *params);
+int		ft_set_indexes(t_sort_params *params);
 void	ft_sort_3(t_sort_params *params);
 void	ft_sort_five_four_help(t_sort_params *params);
 void	ft_sort_five_four(t_sort_params *params);
 void	ft_final_helper(t_sort_params *params, int *i);
 void	ft_final_helper_2(t_sort_params *params, int *c);
+int		ft_allocator(t_sort_params **params, char **argv, int size_of_a);
 
 #endif
