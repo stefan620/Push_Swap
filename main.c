@@ -5,7 +5,6 @@
 typedef struct {
     int x, y;
     int cost;
-    char direction;
 } Node;
 
 typedef struct {
@@ -67,31 +66,60 @@ int getCost(char cell) {
     return (int)cell;  // Convert character to ASCII value
 }
 
-void printDirection(char direction) {
-    switch (direction) {
-        case 'U': printf("Move: Up\n"); break;
-        case 'D': printf("Move: Down\n"); break;
-        case 'L': printf("Move: Left\n"); break;
-        case 'R': printf("Move: Right\n"); break;
+void printPath(int **parentX, int **parentY, int endX, int endY, int startX, int startY) {
+    char moves[1000];
+    int moveIndex = 0;
+
+    int x = endX;
+    int y = endY;
+
+    while (!(x == startX && y == startY)) {
+        int px = parentX[x][y];
+        int py = parentY[x][y];
+
+        if (px == x - 1 && py == y) {
+            moves[moveIndex++] = 'D';  // Down
+        } else if (px == x + 1 && py == y) {
+            moves[moveIndex++] = 'U';  // Up
+        } else if (px == x && py == y - 1) {
+            moves[moveIndex++] = 'R';  // Right
+        } else if (px == x && py == y + 1) {
+            moves[moveIndex++] = 'L';  // Left
+        }
+
+        x = px;
+        y = py;
     }
+
+    printf("Moves on the cheapest path: ");
+    for (int i = moveIndex - 1; i >= 0; i--) {
+        printf("%c ", moves[i]);
+    }
+    printf("\n");
 }
 
 int dijkstra(char **maze, int rows, int cols, int startX, int startY, int endX, int endY) {
     int **visited = malloc(rows * sizeof(int *));
     int **costs = malloc(rows * sizeof(int *));
+    int **parentX = malloc(rows * sizeof(int *));
+    int **parentY = malloc(rows * sizeof(int *));
     for (int i = 0; i < rows; i++) {
         visited[i] = calloc(cols, sizeof(int));
         costs[i] = malloc(cols * sizeof(int));
-        for (int j = 0; j < cols; j++)
+        parentX[i] = malloc(cols * sizeof(int));
+        parentY[i] = malloc(cols * sizeof(int));
+        for (int j = 0; j < cols; j++) {
             costs[i][j] = INT_MAX;
+            parentX[i][j] = -1;
+            parentY[i][j] = -1;
+        }
     }
 
-    costs[startX][startY] = 0;  // Start with 0 cost
+    costs[startX][startY] = 0;
     MinHeap *heap = createMinHeap(rows * cols);
-    push(heap, (Node){startX, startY, 0, '\0'});
+    push(heap, (Node){startX, startY, 0});
 
     int directions[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-    char dirChars[4] = {'U', 'D', 'L', 'R'};
 
     while (heap->size > 0) {
         Node current = pop(heap);
@@ -99,18 +127,20 @@ int dijkstra(char **maze, int rows, int cols, int startX, int startY, int endX, 
 
         visited[current.x][current.y] = 1;
 
-        if (current.direction) {
-            printDirection(current.direction);
-        }
-
         if (current.x == endX && current.y == endY) {
+            printPath(parentX, parentY, endX, endY, startX, startY);
+
             int result = costs[endX][endY];
             for (int i = 0; i < rows; i++) {
                 free(visited[i]);
                 free(costs[i]);
+                free(parentX[i]);
+                free(parentY[i]);
             }
             free(visited);
             free(costs);
+            free(parentX);
+            free(parentY);
             freeMinHeap(heap);
             return result;
         }
@@ -123,7 +153,9 @@ int dijkstra(char **maze, int rows, int cols, int startX, int startY, int endX, 
                 int newCost = costs[current.x][current.y] + getCost(maze[nx][ny]);
                 if (newCost < costs[nx][ny]) {
                     costs[nx][ny] = newCost;
-                    push(heap, (Node){nx, ny, newCost, dirChars[i]});
+                    parentX[nx][ny] = current.x;
+                    parentY[nx][ny] = current.y;
+                    push(heap, (Node){nx, ny, newCost});
                 }
             }
         }
@@ -132,9 +164,13 @@ int dijkstra(char **maze, int rows, int cols, int startX, int startY, int endX, 
     for (int i = 0; i < rows; i++) {
         free(visited[i]);
         free(costs[i]);
+        free(parentX[i]);
+        free(parentY[i]);
     }
     free(visited);
     free(costs);
+    free(parentX);
+    free(parentY);
     freeMinHeap(heap);
     return -1; // No path found
 }
