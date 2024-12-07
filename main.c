@@ -1,127 +1,191 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 17:52:57 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/02 17:37:14 by silic            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "push_swap.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
-int main(int argc, char **argv)
-{
-    int c = 0;
-    int size_of_a;
-    int size_of_b;
-    int *arra;
-    int *arrb;
-    int check = 0;
+typedef struct {
+    int x, y;
+    int cost;
+    char direction;
+} Node;
+
+typedef struct {
+    Node *heap;
+    int size;
+    int capacity;
+} MinHeap;
+
+MinHeap *createMinHeap(int capacity) {
+    MinHeap *heap = malloc(sizeof(MinHeap));
+    heap->heap = malloc(sizeof(Node) * capacity);
+    heap->size = 0;
+    heap->capacity = capacity;
+    return heap;
+}
+
+void freeMinHeap(MinHeap *heap) {
+    free(heap->heap);
+    free(heap);
+}
+
+void swap(Node *a, Node *b) {
+    Node temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void push(MinHeap *heap, Node node) {
+    heap->heap[heap->size] = node;
+    int i = heap->size++;
+    while (i > 0 && heap->heap[i].cost < heap->heap[(i - 1) / 2].cost) {
+        swap(&heap->heap[i], &heap->heap[(i - 1) / 2]);
+        i = (i - 1) / 2;
+    }
+}
+
+Node pop(MinHeap *heap) {
+    Node root = heap->heap[0];
+    heap->heap[0] = heap->heap[--heap->size];
     int i = 0;
-    int save_size;
-    size_of_b = 0;
-    size_of_a = argc - 1;
-    // while(argv[1][i])
-    // {
-    //     if(argv[i][0] == ' ')
-    //         size_of_a++;
-    //     i++;
-    // }
-    // size_of_a += 1;
-    i = 0;
-    arrb = (int *)malloc(size_of_a * sizeof(int));
-    arra = ft_int_regulator(argv, (int )*&size_of_a);
-    // if (!ft_reverse_order_check(&arra, size_of_a))
-    //     printf("rev sorted");
-    // else
-    //     printf("rev not sorted");
-   // printf("size of a = %d\n", size_of_a);
-   save_size = size_of_a;
-    while (ft_order_check(&arra, size_of_a) || i != save_size)
-    {
-        if(!ft_order_check(&arra, size_of_a) && size_of_a == save_size)
-            break;
-       // printf("%d\n", ft_order_check(&arra, size_of_a));
-        if (!ft_reverse_order_check(&arra, size_of_a) && size_of_a > 1)
-        {
-            //  printf("check\n");
-            ft_rotate(&arra, size_of_a);
-            printf("ra\n");
-            check = 0;  
-            c++;
-        }
-        else if (arra[0] > arra[1] && size_of_a > 1)
-        {
-            //  printf("check\n");
-            ft_swap(&arra, size_of_a);
-            printf("sa\n");
-            check = 0;  
-            c++;
-        }
-        else if (arra[0] > arra[size_of_a - 1])
-        {
-            //  printf("check\n");
-            ft_reverse(&arra, size_of_a);
-            printf("rra\n");
-            check = 0;  
-            c++;
-        }
-        else if(arrb[0] != 0 && arrb[0] < arrb[1])
-        {
-            //  printf("check\n");
-            ft_swap(&arrb, size_of_b);
-            printf("sb\n");
-            check = 0;  
-            c++;
-        }
-        else if(arrb[0] != 0 &&  arrb[0] < arra[0] && check != 1)
-        {
-            // printf("check\n");
-            ft_push(&arra, &arrb, &size_of_a, &size_of_b);
-            printf("pa\n");
-            c++;   
-            check = 0;        
-        }
-        else
-        {
-            //  printf("check\n");
-            ft_push(&arrb, &arra, &size_of_b, &size_of_a );
-            printf("pb\n");
-            check = 1;
-            //break;
-            c++;
-        }
-        //printf("size of a = %d\n", size_of_a);
-        i = size_of_a;
-       // printf("i = %d\n", i);
-       if (c == 5000)
-        break;
+    while (2 * i + 1 < heap->size) {
+        int smallest = i;
+        if (heap->heap[2 * i + 1].cost < heap->heap[smallest].cost)
+            smallest = 2 * i + 1;
+        if (2 * i + 2 < heap->size && heap->heap[2 * i + 2].cost < heap->heap[smallest].cost)
+            smallest = 2 * i + 2;
+        if (smallest == i) break;
+        swap(&heap->heap[i], &heap->heap[smallest]);
+        i = smallest;
     }
-    
-    /////////////////////////////////////////////
-    int a;
-    int b;
-    a = 0;
-    b = 0;
-    printf("number of operations = %d\n", c);
-    while(a != size_of_a)
-    {
-        printf("%d ", arra[a]);
-        a++;
+    return root;
+}
+
+int isValid(int x, int y, int rows, int cols, int **visited) {
+    return x >= 0 && y >= 0 && x < rows && y < cols && !visited[x][y];
+}
+
+int getCost(char cell) {
+    return (int)cell;  // Convert character to ASCII value
+}
+
+void printDirection(char direction) {
+    switch (direction) {
+        case 'U': printf("Move: Up\n"); break;
+        case 'D': printf("Move: Down\n"); break;
+        case 'L': printf("Move: Left\n"); break;
+        case 'R': printf("Move: Right\n"); break;
     }
-    printf("\n");
-    while(b != size_of_b)
-    {
-        printf("%d ", arrb[b]);
-        b++;
+}
+
+int dijkstra(char **maze, int rows, int cols, int startX, int startY, int endX, int endY) {
+    int **visited = malloc(rows * sizeof(int *));
+    int **costs = malloc(rows * sizeof(int *));
+    for (int i = 0; i < rows; i++) {
+        visited[i] = calloc(cols, sizeof(int));
+        costs[i] = malloc(cols * sizeof(int));
+        for (int j = 0; j < cols; j++)
+            costs[i][j] = INT_MAX;
     }
-    /////////////////////////////////////////////    
-    free(arra);
-    free(arrb);
-    return(0);
+
+    costs[startX][startY] = 0;  // Start with 0 cost
+    MinHeap *heap = createMinHeap(rows * cols);
+    push(heap, (Node){startX, startY, 0, '\0'});
+
+    int directions[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    char dirChars[4] = {'U', 'D', 'L', 'R'};
+
+    while (heap->size > 0) {
+        Node current = pop(heap);
+        if (visited[current.x][current.y]) continue;
+
+        visited[current.x][current.y] = 1;
+
+        if (current.direction) {
+            printDirection(current.direction);
+        }
+
+        if (current.x == endX && current.y == endY) {
+            int result = costs[endX][endY];
+            for (int i = 0; i < rows; i++) {
+                free(visited[i]);
+                free(costs[i]);
+            }
+            free(visited);
+            free(costs);
+            freeMinHeap(heap);
+            return result;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            int nx = current.x + directions[i][0];
+            int ny = current.y + directions[i][1];
+
+            if (isValid(nx, ny, rows, cols, visited)) {
+                int newCost = costs[current.x][current.y] + getCost(maze[nx][ny]);
+                if (newCost < costs[nx][ny]) {
+                    costs[nx][ny] = newCost;
+                    push(heap, (Node){nx, ny, newCost, dirChars[i]});
+                }
+            }
+        }
+    }
+
+    for (int i = 0; i < rows; i++) {
+        free(visited[i]);
+        free(costs[i]);
+    }
+    free(visited);
+    free(costs);
+    freeMinHeap(heap);
+    return -1; // No path found
+}
+
+int main() {
+    int rows, cols;
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    char **maze = malloc(rows * sizeof(char *));
+    for (int i = 0; i < rows; i++) {
+        maze[i] = malloc((cols + 1) * sizeof(char));  // +1 for null terminator
+    }
+
+    printf("Enter the maze (use any characters, 'S' for start, 'E' for end):\n");
+    for (int i = 0; i < rows; i++) {
+        scanf("%s", maze[i]);
+    }
+
+    int startX = -1, startY = -1, endX = -1, endY = -1;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (maze[i][j] == 'S') {
+                startX = i;
+                startY = j;
+            } else if (maze[i][j] == 'E') {
+                endX = i;
+                endY = j;
+            }
+        }
+    }
+
+    if (startX == -1 || startY == -1 || endX == -1 || endY == -1) {
+        printf("Error: Start ('S') or End ('E') point missing in the maze.\n");
+        for (int i = 0; i < rows; i++) free(maze[i]);
+        free(maze);
+        return 1;
+    }
+
+    int cost = dijkstra(maze, rows, cols, startX, startY, endX, endY);
+    if (cost != -1)
+        printf("The cheapest cost is: %d\n", cost);
+    else
+        printf("No path found!\n");
+
+    for (int i = 0; i < rows; i++) {
+        free(maze[i]);
+    }
+    free(maze);
+
+    return 0;
 }
