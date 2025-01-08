@@ -6,16 +6,23 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:16:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/22 13:56:26 by silic            ###   ########.fr       */
+/*   Updated: 2024/12/30 17:05:43 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
 
+static void	help(t_sort_params *params);
+static void	help3(t_sort_params *params);
+
 void	ft_sort_3(t_sort_params *params)
 {
-	if (params->arra[2] != 2)
+	if (params->arra[1] != 2)
+	{
+		help3(params);
+	}
+	else if (params->arra[2] != 2)
 	{
 		if (params->arra[0] == 2)
 		{
@@ -32,6 +39,15 @@ void	ft_sort_3(t_sort_params *params)
 	{
 		ft_swap(&params->arra, *params->size_of_a);
 		write(1, "sa\n", 3);
+	}
+}
+
+static void	help3(t_sort_params *params)
+{
+	if (params->arra[0] == 2)
+	{
+		ft_rotate(&params->arra, *params->size_of_a);
+		write(1, "ra\n", 3);
 	}
 }
 
@@ -65,7 +81,11 @@ void	ft_sort_five_four(t_sort_params *params)
 
 void	ft_sort_five_four_help(t_sort_params *params)
 {
-	if (params->arra[2] != 4)
+	if (params->arra[1] != 4)
+	{
+		help(params);
+	}
+	else if (params->arra[2] != 4)
 	{
 		if (params->arra[0] == 4)
 		{
@@ -82,5 +102,19 @@ void	ft_sort_five_four_help(t_sort_params *params)
 	{
 		ft_swap(&params->arra, *params->size_of_a);
 		write(1, "sa\n", 3);
+	}
+}
+
+static void	help(t_sort_params *params)
+{
+	if (params->arra[0] == 4)
+	{
+		ft_rotate(&params->arra, *params->size_of_a);
+		write(1, "ra\n", 3);
+	}
+	else
+	{
+		ft_reverse(&params->arra, *params->size_of_a);
+		write(1, "rra\n", 4);
 	}
 }

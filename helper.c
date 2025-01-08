@@ -6,12 +6,11 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:36:15 by stefan            #+#    #+#             */
-/*   Updated: 2024/11/23 14:57:17 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/23 14:58:12 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 

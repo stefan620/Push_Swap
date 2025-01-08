@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:43:42 by silic             #+#    #+#             */
-/*   Updated: 2024/11/23 14:47:11 by silic            ###   ########.fr       */
+/*   Updated: 2024/12/30 17:00:15 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@ int	ft_check_for_num(char **argv, int argc)
 		j = 0;
 		while (argv[i][j])
 		{
-			if ((argv[i][j] == '+' || argv[i][j] == '-') && argv[i][j
-				+ 1] == '\0')
+			if ((argv[i][j] < '0' || argv[i][j] > '9') && (argv[i][j]
+					!= '+' && argv[i][j] != '-'))
 				return (1);
-			if ((argv[i][j] < '0' || argv[i][j] > '9') && (argv[i][j] != '+'
-					&& argv[i][j] != '-'))
+			if ((argv[i][j] == '+' || argv[i][j] == '-') && (argv[i][j
+					+ 1] == '\0' || argv[i][j + 1] == '+' || argv[i][j
+					+ 1] == '-'))
+				return (1);
+			if ((argv[i][j] >= '0' && argv[i][j] <= '9') && (argv[i][j
+					+ 1] == '+' || argv[i][j + 1] == '-'))
 				return (1);
 			j++;
 		}
@@ -64,7 +68,6 @@ int	ft_check_repeat(int **arr, int size)
 	while (i != size)
 	{
 		j = i + 1;
-		printf("arr[i] = %lu\n", sizeof(arr[i]));
 		while (j != size)
 		{
 			if ((*arr)[i] == (*arr)[j])
@@ -83,7 +86,7 @@ int	ft_over_check(char **argv, int argc)
 	i = 1;
 	while (i != argc)
 	{
-		if (ft_atoi_long(argv[i]) > 2147483647 || ft_atoi(argv[i])
+		if (ft_atoi_long(argv[i]) > 2147483647 || ft_atoi_long(argv[i])
 			< -2147483647)
 			return (1);
 		i++;

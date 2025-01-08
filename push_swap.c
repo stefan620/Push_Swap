@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/23 14:56:03 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/23 17:01:10 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	main(int argc, char **argv)
 	i = 2;
 	if (ft_check_for_num(argv, argc) || ft_over_check(argv, argc))
 		return (write(1, "Error\n", 7), 0);
-	if (size_of_a <= 1)
-		return (write(1, "Error\n", 7), 0);
+	if (size_of_a < 1)
+		return (0);
 	params = (t_sort_params *)malloc(sizeof(t_sort_params));
-	if (!params || !ft_allocator(&params, argv ,size_of_a ))
+	if (!params || !ft_allocator(&params, argv, size_of_a))
 		return (0);
 	params->size_of_a = &size_of_a;
 	params->size_of_b = &size_of_b;
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 
 static int	helper_1(t_sort_params *params, int *i)
 {
-	if (ft_check_repeat(&params->arra, *params->size_of_a))
+	if (ft_check_repeat(&params->arra, *params->size_of_a) == 1)
 		return (write(1, "Error\n", 7), 0);
 	if (!ft_order_check(&params->arra, *params->size_of_a))
 		return (0);

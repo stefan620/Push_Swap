@@ -6,24 +6,51 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/03 15:40:55 by silic            ###   ########.fr       */
+/*   Updated: 2024/11/23 14:58:41 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-void ft_split(int **arra, int **arrb,int **arr_base,int *size_of_a, int *size_of_b);
-void    ft_sort_a(int **arra, int **arrb, int **arr_base, int *size_of_a, int *size_of_b);
-void    ft_sort_b_top(int **arra, int **arrb, int **arr_base, int *size_of_a, int *size_of_b);  
-void    ft_swap(int **stack, int size);
-void ft_push(int **stack_a, int **stack_b, int *size_a, int *size_b);
-void    ft_rotate(int **stack, int size);
-void ft_reverse(int **stack, int size);
-int     *ft_int_regulator(char **argv, int size);
-int ft_order_check(int **stack, int size);
-int ft_reverse_order_check(int **stack, int size);
-int ft_order_check(int **stack, int size);
-void ft_buble(int **stack, int **base, int size);
+typedef struct s_sort_params
+{
+	int	*arra;
+	int	*arrb;
+	int	*arr_base;
+	int	*size_of_a;
+	int	*size_of_b;
+	int	delimiter;
+}		t_sort_params;
+
+void	ft_clean(t_sort_params *params);
+int		ft_order_check(int **stack, int size);
+void	ft_split_a(t_sort_params *params);
+void	ft_sort_a(t_sort_params *params);
+void	ft_swap(int **stack, int size);
+void	ft_push(int **stack_a, int **stack_b, int *size_a, int *size_b);
+void	ft_rotate(int **stack, int size);
+void	ft_reverse(int **stack, int size);
+int		*ft_int_regulator(char **argv, int size);
+void	ft_buble(int **stack, int **base, int size);
+void	ft_finish_a(t_sort_params *params);
+void	ft_final_sort(t_sort_params *params);
+void	ft_finish_b(t_sort_params *params);
+int		ft_the_decider(int **arra, int **arrb, int in_b);
+int		ft_the_decider_v2(int **arra, int size_of_a, int **buble);
+int		ft_the_decider_v3(int **arra, int size_of_a, int **buble);
+void	ft_finish_a_helper(t_sort_params *params, int *i);
+int		ft_atoi(const char *str);
+int		ft_check_for_num(char **argv, int argc);
+int		ft_check_repeat(int **arr, int size);
+int		ft_over_check(char **argv, int argc);
+long	ft_atoi_long(const char *str);
+int		ft_set_indexes(t_sort_params *params);
+void	ft_sort_3(t_sort_params *params);
+void	ft_sort_five_four_help(t_sort_params *params);
+void	ft_sort_five_four(t_sort_params *params);
+void	ft_final_helper(t_sort_params *params, int *i);
+void	ft_final_helper_2(t_sort_params *params, int *c);
+int		ft_allocator(t_sort_params **params, char **argv, int size_of_a);
 
 #endif
