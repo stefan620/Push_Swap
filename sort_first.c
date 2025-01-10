@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:16:25 by silic             #+#    #+#             */
-/*   Updated: 2024/12/30 17:05:43 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/10 19:25:56 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,28 @@
 #include <unistd.h>
 
 static void	help(t_sort_params *params);
-static void	help3(t_sort_params *params);
 
 void	ft_sort_3(t_sort_params *params)
 {
-	if (params->arra[1] != 2)
+	while(1)
 	{
-		help3(params);
-	}
-	else if (params->arra[2] != 2)
-	{
-		if (params->arra[0] == 2)
+		if (params->arra[0] > params->arra[1])
+		{
+			ft_swap(&params->arra, *params->size_of_a);
+			write(1, "sa\n", 3);
+		}
+		else if (params->arra[0] > params->arra[2])
+		{
+			ft_reverse(&params->arra, *params->size_of_a);
+			write(1, "rra\n", 4);
+		}
+		else if (params->arra[1] > params->arra[2])
 		{
 			ft_rotate(&params->arra, *params->size_of_a);
 			write(1, "ra\n", 3);
 		}
 		else
-		{
-			ft_reverse(&params->arra, *params->size_of_a);
-			write(1, "rra\n", 4);
-		}
-	}
-	if (params->arra[0] > params->arra[1])
-	{
-		ft_swap(&params->arra, *params->size_of_a);
-		write(1, "sa\n", 3);
-	}
-}
-
-static void	help3(t_sort_params *params)
-{
-	if (params->arra[0] == 2)
-	{
-		ft_rotate(&params->arra, *params->size_of_a);
-		write(1, "ra\n", 3);
+			break;
 	}
 }
 

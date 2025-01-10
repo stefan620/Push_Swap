@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2024/11/23 17:01:10 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/10 19:30:36 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ static int	helper(t_sort_params *params)
 		return (0);
 	if (*params->size_of_a <= 3)
 		return (ft_sort_3(params), 1);
-	else if (*params->size_of_a <= 5)
-		return (ft_sort_five_four(params), 1);
+	// else if (*params->size_of_a <= 5)
+	// 	return (ft_sort_five_four(params), 1);
 	return (0);
 }
 
