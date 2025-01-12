@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 14:56:50 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/19 14:49:24 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/12 16:02:03 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_push(int **stack_a, int **stack_b, int *size_a, int *size_b)
 
 	i = 0;
 	tmp_b = **stack_b;
-	while (i != *size_b)
+	while (i != *size_b - 1)
 	{
 		(*stack_b)[i] = (*stack_b)[i + 1];
 		i++;
@@ -54,7 +54,7 @@ void	ft_rotate(int **stack, int size)
 
 	i = 0;
 	tmp = **stack;
-	while (i != size)
+	while (i != size - 1)
 	{
 		(*stack)[i] = (*stack)[i + 1];
 		i++;
@@ -65,12 +65,16 @@ void	ft_rotate(int **stack, int size)
 void	ft_reverse(int **stack, int size)
 {
 	int	tmp;
+	int	i;
 
+	if (size <= 1)
+		return ;
 	tmp = (*stack)[size - 1];
-	while (size != 0)
+	i = size - 1;
+	while (i > 0)
 	{
-		(*stack)[size] = (*stack)[size - 1];
-		size--;
+		(*stack)[i] = (*stack)[i - 1];
+		i--;
 	}
-	**stack = tmp;
+	(*stack)[0] = tmp;
 }

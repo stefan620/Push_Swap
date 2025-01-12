@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/23 14:58:41 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/12 16:15:41 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	ft_sort_five_four(t_sort_params *params);
 void	ft_final_helper(t_sort_params *params, int *i);
 void	ft_final_helper_2(t_sort_params *params, int *c);
 int		ft_allocator(t_sort_params **params, char **argv, int size_of_a);
+void	sort_4(t_sort_params *params);
 
 #endif
