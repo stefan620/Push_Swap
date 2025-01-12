@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 17:43:42 by silic             #+#    #+#             */
-/*   Updated: 2024/12/30 17:00:15 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/12 16:29:06 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_over_check(char **argv, int argc)
 	while (i != argc)
 	{
 		if (ft_atoi_long(argv[i]) > 2147483647 || ft_atoi_long(argv[i])
-			< -2147483647)
+			< -2147483648)
 			return (1);
 		i++;
 	}
