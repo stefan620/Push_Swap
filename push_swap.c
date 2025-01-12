@@ -6,12 +6,13 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2025/01/12 16:15:25 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/12 21:12:30 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 
 static void	ft_push_swap(t_sort_params *params, int i);
@@ -55,8 +56,16 @@ static int	helper_1(t_sort_params *params, int *i)
 		return (0);
 	if (helper(params))
 		return (0);
-	if (*params->size_of_a >= 100)
-		*i = *params->size_of_a / 25;
+	if (*params->size_of_a >= 100 && *params->size_of_a < 500)
+	{
+		*i = *params->size_of_a / 15;
+	}
+	else if (*params->size_of_a >= 500)
+	{
+		*i = *params->size_of_a / 30;
+	}
+	// printf("i = %d\n", *i);
+	// exit(0);
 	return (1);
 }
 
@@ -78,8 +87,8 @@ static int	ft_delimitor(int size_of_a, int i)
 	int	delimiter;
 
 	delimiter = size_of_a / i;
-	if (size_of_a % i != 0)
-		delimiter++;
+	// if (size_of_a % i != 0)
+	// 	delimiter++;
 	return (delimiter);
 }
 
