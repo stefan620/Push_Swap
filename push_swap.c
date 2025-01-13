@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2025/01/12 21:12:30 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/13 01:54:25 by stefan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	helper_1(t_sort_params *params, int *i)
 	}
 	else if (*params->size_of_a >= 500)
 	{
-		*i = *params->size_of_a / 30;
+		*i = *params->size_of_a / 24;
 	}
 	// printf("i = %d\n", *i);
 	// exit(0);

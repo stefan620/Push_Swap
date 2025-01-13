@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:25:04 by silic             #+#    #+#             */
-/*   Updated: 2025/01/12 21:04:34 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/13 01:59:40 by stefan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
+
+static int rotation_check(t_sort_params *params);
 
 void	ft_split_a(t_sort_params *params)
 {
@@ -22,10 +24,18 @@ void	ft_split_a(t_sort_params *params)
 	{
 		if (params->arra[0] >= params->arr_base[params->delimiter])
 		{
-			ft_rotate(&params->arra, *params->size_of_a);
-			write(1, "ra\n", 3);
+			if (rotation_check(params))
+			{
+				ft_reverse(&params->arra, *params->size_of_a);
+				write(1, "rra\n", 4);
+			}
+			else
+			{
+				ft_rotate(&params->arra, *params->size_of_a);
+				write(1, "ra\n", 3);
+			}
 		}
-		else if (&params->arra[0] <= &params->arr_base[params->delimiter])
+		else
 		{
 			ft_push(&params->arrb, &params->arra, params->size_of_b,
 				params->size_of_a);
@@ -66,7 +76,12 @@ void	ft_final_sort(t_sort_params *params)
 		while (1)
 		{
 			ft_buble(&params->arrb, &params->arr_base, *params->size_of_b);
-			if (params->arrb[0] == (params->arra)[0] - 1)
+			if (params->arrb[0] == (params->arrb)[1] - 1)
+			{
+				ft_swap(&params->arrb, *params->size_of_b);
+				write(1, "sb\n", 3);
+			}
+			else if (params->arrb[0] == (params->arra)[0] - 1)
 			{
 				ft_final_helper_2(params, &c);
 				if (!ft_the_decider(&params->arra, &params->arrb, i))
@@ -109,4 +124,17 @@ void	ft_finish_b(t_sort_params *params)
 			write(1, "pa\n", 3);
 		}
 	}
+}
+static int rotation_check(t_sort_params *params)
+{
+	int forward;
+	int backward;
+
+	forward = 0;
+	backward = 0;
+	while (forward < *params->size_of_a && params->arra[forward] < params->arr_base[params->delimiter])
+		forward++;
+	while (backward < *params->size_of_a && params->arra[*params->size_of_a - 1 - backward] < params->arr_base[params->delimiter])
+		backward++;
+	return forward < backward;
 }
