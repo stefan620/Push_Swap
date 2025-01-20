@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:25:04 by silic             #+#    #+#             */
-/*   Updated: 2025/01/13 01:59:40 by stefan           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:19:33 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
-
-static int rotation_check(t_sort_params *params);
-
+static void	fucking_sort1(t_sort_params *params);
 void	ft_split_a(t_sort_params *params)
 {
 	int	c;
@@ -24,24 +22,16 @@ void	ft_split_a(t_sort_params *params)
 	{
 		if (params->arra[0] >= params->arr_base[params->delimiter])
 		{
-			if (rotation_check(params))
-			{
-				ft_reverse(&params->arra, *params->size_of_a);
-				write(1, "rra\n", 4);
-			}
-			else
-			{
-				ft_rotate(&params->arra, *params->size_of_a);
-				write(1, "ra\n", 3);
-			}
+			ft_rotate(&params->arra, *params->size_of_a);
+			write(1, "ra\n", 3);
 		}
-		else
+		else if (&params->arra[0] <= &params->arr_base[params->delimiter])
 		{
 			ft_push(&params->arrb, &params->arra, params->size_of_b,
 				params->size_of_a);
 			write(1, "pb\n", 3);
 			c++;
-		}		
+		}
 	}
 }
 
@@ -64,11 +54,12 @@ void	ft_finish_a(t_sort_params *params)
 	}
 }
 
-void	ft_final_sort(t_sort_params *params)
+void	ft_final_sort(t_sort_params *params,int j)
 {
 	int	i;
 	int	c;
 
+	params->tracker = 0;
 	i = 0;
 	c = 0;
 	while (c != params->delimiter)
@@ -76,12 +67,7 @@ void	ft_final_sort(t_sort_params *params)
 		while (1)
 		{
 			ft_buble(&params->arrb, &params->arr_base, *params->size_of_b);
-			if (params->arrb[0] == (params->arrb)[1] - 1)
-			{
-				ft_swap(&params->arrb, *params->size_of_b);
-				write(1, "sb\n", 3);
-			}
-			else if (params->arrb[0] == (params->arra)[0] - 1)
+			if (params->arrb[0] == (params->arra)[0] - 1)
 			{
 				ft_final_helper_2(params, &c);
 				if (!ft_the_decider(&params->arra, &params->arrb, i))
@@ -94,7 +80,7 @@ void	ft_final_sort(t_sort_params *params)
 				i++;
 			}
 		}
-		ft_final_helper(params, &i);
+		ft_final_helper(params, &i, &c, j);
 	}
 }
 
@@ -103,6 +89,8 @@ void	ft_finish_b(t_sort_params *params)
 	while (*params->size_of_b != 0)
 	{
 		ft_buble(&params->arrb, &params->arr_base, *params->size_of_b);
+		if (params->size_of_b == 0)
+			break ;
 		if (params->arrb[0] != (params->arr_base)[*params->size_of_b - 1]
 			&& ft_the_decider_v3(&params->arrb, *params->size_of_b,
 				&params->arr_base))
@@ -125,16 +113,20 @@ void	ft_finish_b(t_sort_params *params)
 		}
 	}
 }
-static int rotation_check(t_sort_params *params)
-{
-	int forward;
-	int backward;
 
-	forward = 0;
-	backward = 0;
-	while (forward < *params->size_of_a && params->arra[forward] < params->arr_base[params->delimiter])
-		forward++;
-	while (backward < *params->size_of_a && params->arra[*params->size_of_a - 1 - backward] < params->arr_base[params->delimiter])
-		backward++;
-	return forward < backward;
+void	fucking_sort(t_sort_params *params, int *c, int j)
+{
+	ft_buble(&params->arrb, &params->arr_base, params->delimiter);
+	if (params->arrb[0] == params->arr_base[params->delimiter * j])
+	{
+		printf("rotate\n");
+		ft_push(&params->arra, &params->arrb, params->size_of_a,
+			params->size_of_b);
+		write(1, "pa\n", 3);
+		ft_rotate(&params->arra, *params->size_of_a);
+		write(1, "ra\n", 3);
+		(*c)++;
+		params->tracker++;
+	}
 }
+

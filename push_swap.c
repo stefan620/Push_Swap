@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2025/01/13 01:54:25 by stefan           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:24:43 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 static void	ft_push_swap(t_sort_params *params, int i);
@@ -58,14 +58,12 @@ static int	helper_1(t_sort_params *params, int *i)
 		return (0);
 	if (*params->size_of_a >= 100 && *params->size_of_a < 500)
 	{
-		*i = *params->size_of_a / 15;
+		*i = *params->size_of_a / 20;
 	}
 	else if (*params->size_of_a >= 500)
 	{
-		*i = *params->size_of_a / 24;
+		*i = *params->size_of_a / 35;
 	}
-	// printf("i = %d\n", *i);
-	// exit(0);
 	return (1);
 }
 
@@ -87,8 +85,6 @@ static int	ft_delimitor(int size_of_a, int i)
 	int	delimiter;
 
 	delimiter = size_of_a / i;
-	// if (size_of_a % i != 0)
-	// 	delimiter++;
 	return (delimiter);
 }
 
@@ -109,9 +105,16 @@ static void	ft_push_swap(t_sort_params *params, int i)
 	{
 		while (*params->size_of_b != params->delimiter * i)
 		{
-			ft_final_sort(params);
+			ft_final_sort(params, i);
+			while(params->tracker != 0)
+			{
+				ft_reverse(&params->arra, *params->size_of_a);
+				write(1, "rra\n", 4);
+				params->tracker--;
+			}
 		}
 		i--;
 	}
+	// exit (0);
 	ft_finish_b(params);
 }

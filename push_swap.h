@@ -6,17 +6,20 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/12 16:15:41 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/20 19:58:12 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include <stdio.h>
 typedef struct s_sort_params
 {
 	int	*arra;
 	int	*arrb;
+	int tracker;
+	int w;
 	int	*arr_base;
 	int	*size_of_a;
 	int	*size_of_b;
@@ -28,13 +31,14 @@ int		ft_order_check(int **stack, int size);
 void	ft_split_a(t_sort_params *params);
 void	ft_sort_a(t_sort_params *params);
 void	ft_swap(int **stack, int size);
+void	fucking_sort(t_sort_params *params, int *c, int j);
 void	ft_push(int **stack_a, int **stack_b, int *size_a, int *size_b);
 void	ft_rotate(int **stack, int size);
 void	ft_reverse(int **stack, int size);
 int		*ft_int_regulator(char **argv, int size);
 void	ft_buble(int **stack, int **base, int size);
 void	ft_finish_a(t_sort_params *params);
-void	ft_final_sort(t_sort_params *params);
+void	ft_final_sort(t_sort_params *params,int j);
 void	ft_finish_b(t_sort_params *params);
 int		ft_the_decider(int **arra, int **arrb, int in_b);
 int		ft_the_decider_v2(int **arra, int size_of_a, int **buble);
@@ -49,7 +53,7 @@ int		ft_set_indexes(t_sort_params *params);
 void	ft_sort_3(t_sort_params *params);
 void	ft_sort_five_four_help(t_sort_params *params);
 void	ft_sort_five_four(t_sort_params *params);
-void	ft_final_helper(t_sort_params *params, int *i);
+void	ft_final_helper(t_sort_params *params, int *i, int *c, int j);
 void	ft_final_helper_2(t_sort_params *params, int *c);
 int		ft_allocator(t_sort_params **params, char **argv, int size_of_a);
 void	sort_4(t_sort_params *params);

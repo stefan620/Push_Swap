@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 15:36:15 by stefan            #+#    #+#             */
-/*   Updated: 2025/01/13 01:48:53 by stefan           ###   ########.fr       */
+/*   Updated: 2025/01/20 20:02:10 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_finish_a_helper(t_sort_params *params, int *i)
 	}
 }
 
-void	ft_final_helper(t_sort_params *params, int *i)
+void	ft_final_helper(t_sort_params *params, int *i, int *c, int j)
 {
 	while (*i != 0)
 	{
@@ -68,6 +68,17 @@ void	ft_final_helper(t_sort_params *params, int *i)
 		ft_reverse(&params->arrb, *params->size_of_b);
 		write(1, "rrb\n", 4);
 		(*i)--;
+		ft_buble(&params->arrb, &params->arr_base, *params->size_of_b);
+		if (params->arrb[0] == params->arr_base[params->delimiter * j])
+		{
+			ft_push(&params->arra, &params->arrb, params->size_of_a,
+				params->size_of_b);
+			write(1, "pa\n", 3);
+			ft_rotate(&params->arra, *params->size_of_a);
+			write(1, "ra\n", 3);
+			(*c)++;
+			params->tracker++;
+		}
 	}
 }
 
