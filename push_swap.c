@@ -6,7 +6,7 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:27:25 by silic             #+#    #+#             */
-/*   Updated: 2025/01/20 20:24:43 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/21 14:14:43 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,20 @@ static void	ft_push_swap(t_sort_params *params, int i)
 		ft_split_a(params);
 		c++;
 	}
-	i--;
 	ft_finish_a(params);
-	while (i != 0)
+	while (--i != 0)
 	{
 		while (*params->size_of_b != params->delimiter * i)
 		{
+			params->tracker = 0;
 			ft_final_sort(params, i);
-			while(params->tracker != 0)
+			while (params->tracker != 0)
 			{
 				ft_reverse(&params->arra, *params->size_of_a);
 				write(1, "rra\n", 4);
 				params->tracker--;
 			}
 		}
-		i--;
 	}
-	// exit (0);
 	ft_finish_b(params);
 }

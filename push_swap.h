@@ -6,20 +6,19 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:53:06 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/20 19:58:12 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/21 14:11:05 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 typedef struct s_sort_params
 {
 	int	*arra;
 	int	*arrb;
-	int tracker;
-	int w;
+	int	tracker;
+	int	w;
 	int	*arr_base;
 	int	*size_of_a;
 	int	*size_of_b;
@@ -38,7 +37,7 @@ void	ft_reverse(int **stack, int size);
 int		*ft_int_regulator(char **argv, int size);
 void	ft_buble(int **stack, int **base, int size);
 void	ft_finish_a(t_sort_params *params);
-void	ft_final_sort(t_sort_params *params,int j);
+void	ft_final_sort(t_sort_params *params, int j);
 void	ft_finish_b(t_sort_params *params);
 int		ft_the_decider(int **arra, int **arrb, int in_b);
 int		ft_the_decider_v2(int **arra, int size_of_a, int **buble);

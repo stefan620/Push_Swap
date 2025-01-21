@@ -6,13 +6,13 @@
 /*   By: silic <silic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 14:25:04 by silic             #+#    #+#             */
-/*   Updated: 2025/01/20 20:19:33 by silic            ###   ########.fr       */
+/*   Updated: 2025/01/21 14:16:09 by silic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
-static void	fucking_sort1(t_sort_params *params);
+
 void	ft_split_a(t_sort_params *params)
 {
 	int	c;
@@ -54,12 +54,11 @@ void	ft_finish_a(t_sort_params *params)
 	}
 }
 
-void	ft_final_sort(t_sort_params *params,int j)
+void	ft_final_sort(t_sort_params *params, int j)
 {
 	int	i;
 	int	c;
 
-	params->tracker = 0;
 	i = 0;
 	c = 0;
 	while (c != params->delimiter)
@@ -89,8 +88,6 @@ void	ft_finish_b(t_sort_params *params)
 	while (*params->size_of_b != 0)
 	{
 		ft_buble(&params->arrb, &params->arr_base, *params->size_of_b);
-		if (params->size_of_b == 0)
-			break ;
 		if (params->arrb[0] != (params->arr_base)[*params->size_of_b - 1]
 			&& ft_the_decider_v3(&params->arrb, *params->size_of_b,
 				&params->arr_base))
@@ -113,20 +110,3 @@ void	ft_finish_b(t_sort_params *params)
 		}
 	}
 }
-
-void	fucking_sort(t_sort_params *params, int *c, int j)
-{
-	ft_buble(&params->arrb, &params->arr_base, params->delimiter);
-	if (params->arrb[0] == params->arr_base[params->delimiter * j])
-	{
-		printf("rotate\n");
-		ft_push(&params->arra, &params->arrb, params->size_of_a,
-			params->size_of_b);
-		write(1, "pa\n", 3);
-		ft_rotate(&params->arra, *params->size_of_a);
-		write(1, "ra\n", 3);
-		(*c)++;
-		params->tracker++;
-	}
-}
-
